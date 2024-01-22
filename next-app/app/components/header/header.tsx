@@ -1,7 +1,10 @@
+'use client';
 import Link from 'next/dist/client/link';
-import React from 'react';
+import React, { useState } from 'react';
 
 const header = () => {
+	const [logIn, setLogIn] = useState(false);
+
 	return (
 		<>
 			<header className='sticky top-0 z-50'>
@@ -17,51 +20,9 @@ const header = () => {
 							</li>
 							<li>
 								<Link
-									href='/404'
-									className='link link- p-1'>
-									404
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='/account'
+									href='/about'
 									className='link link-info p-1'>
-									account
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='/admin'
-									className='link link-info p-1'>
-									admin
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='/cart'
-									className='link link-info p-1'>
-									cart
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='/checkout'
-									className='link link-info p-1'>
-									checkout
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='/login'
-									className='link link-info p-1'>
-									login
-								</Link>
-							</li>
-							<li>
-								<Link
-									href='/order'
-									className='link link-info p-1'>
-									order
+									About our store
 								</Link>
 							</li>
 							<li>
@@ -73,9 +34,9 @@ const header = () => {
 							</li>
 							<li>
 								<Link
-									href='/search'
+									href='/cart'
 									className='link link-info p-1'>
-									search
+									cart
 								</Link>
 							</li>
 							<li>
@@ -96,35 +57,46 @@ const header = () => {
 								/>
 							</div>
 
-							<div className='dropdown dropdown-end'>
-								<div
-									tabIndex={0}
-									role='button'
-									className='btn btn-ghost btn-circle avatar'>
-									<div className='w-10 rounded-full'>
-										<img
-											alt='Tailwind CSS Navbar component'
-											src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'
-										/>
+							{logIn && (
+								<div className='dropdown dropdown-end'>
+									<div
+										tabIndex={0}
+										role='button'
+										className='btn btn-ghost btn-circle avatar'>
+										<div className='w-10 rounded-full'>
+											<img
+												alt='Tailwind CSS Navbar component'
+												src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'
+											/>
+										</div>
 									</div>
+									<ul
+										tabIndex={0}
+										className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'>
+										<li>
+											<Link
+												href='/account'
+												className='link link-info p-1'>
+												My account
+											</Link>
+										</li>
+										<li>
+											<Link
+												href='/cart'
+												className='link link-info p-1'>
+												My order
+											</Link>
+										</li>
+										<li>
+											<Link
+												href='/logout'
+												className='link link-info p-1'>
+												Log out
+											</Link>
+										</li>
+									</ul>
 								</div>
-								<ul
-									tabIndex={0}
-									className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'>
-									<li>
-										<a className='justify-between'>
-											Profile
-											<span className='badge'>New</span>
-										</a>
-									</li>
-									<li>
-										<a>Settings</a>
-									</li>
-									<li>
-										<a>Logout</a>
-									</li>
-								</ul>
-							</div>
+							)}
 						</div>
 					</div>
 				</nav>
