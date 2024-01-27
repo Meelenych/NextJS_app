@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Product as ProductType } from '../../interfaces/interfaces';
 
-const productCard = () => {
+const ProductCard = ({ product }: { product: ProductType }) => {
 	return (
 		<li>
-			<p>Name: {'name'}</p>
-			<p>Price: {'price'}</p>
-			<p>Description: {'description'}</p>
+			<p>Name: {product.name}</p>
+			<p>Price: {product.price}</p>
+			<p>Description: {product.description}</p>
 			<img
-				src='{./img/bg.jpg}'
+				src={product.image}
 				alt=''
 			/>
 		</li>
 	);
 };
 
-export default productCard;
+export default ProductCard;

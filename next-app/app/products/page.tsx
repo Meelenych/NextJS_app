@@ -1,20 +1,34 @@
-import React from 'react';
-import productCard from './productCard/productCard';
+'use client';
+import React, { useEffect, useState } from 'react';
+import ProductCard from './ProductCard/ProductCard';
+import { Product } from '../interfaces/interfaces';
 
-interface productCard {
-	name: string;
-	price: number;
-	description: string;
-	img: string;
+interface ProductsPageProps {
+	products: Product[];
 }
 
-const productsPage = () => {
+const ProductsPage: React.FC<ProductsPageProps> = ({
+	products: initialProducts,
+}) => {
+	const [products, setProducts] = useState<Product[]>(initialProducts);
+
+	useEffect(() => {
+		fetch('http://localhost:5000/api/e-store/products')
+			.then(res => res.json())
+			.then(data => setProducts(data))
+			.catch(error => console.error(error));
+	}, []);
+
 	return (
 		<ul>
-			{'products.map(...product}) '}
-			{/* <productCard /> */}
+			{products?.map(product => (
+				<ProductCard
+					key={product.id}
+					product={product}
+				/>
+			))}
 		</ul>
 	);
 };
 
-export default productsPage;
+export default ProductsPage;
