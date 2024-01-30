@@ -7,7 +7,7 @@ const header = () => {
 
 	return (
 		<>
-			<header className='sticky top-0 z-50'>
+			<header className='sticky top-0 z-50 bg-base-100'>
 				<div className='flex justify-between'>
 					<div className='dropdown md:hidden'>
 						<div
