@@ -1,7 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Product as ProductType } from '../../interfaces/interfaces';
 
-const ProductCard = ({ product }: { product: ProductType }) => {
+const ProductCard = ({
+	product,
+	addToCart,
+}: {
+	product: ProductType;
+	addToCart: (item: ProductType) => void;
+}) => {
 	return (
 		<li>
 			<div className='card card-compact bg-base-100 shadow-xl'>
@@ -17,7 +23,13 @@ const ProductCard = ({ product }: { product: ProductType }) => {
 					</h2>
 					<p>{product.description}</p>
 					<div className='card-actions justify-end'>
-						<button className='btn btn-primary'>Buy Now</button>
+						<button
+							className='btn btn-primary'
+							onClick={() => {
+								addToCart(product);
+							}}>
+							Buy Now
+						</button>
 					</div>
 				</div>
 			</div>

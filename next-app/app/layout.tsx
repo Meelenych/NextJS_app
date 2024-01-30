@@ -2,6 +2,9 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import { CartProvider } from './context/CartContext';
+import { ProductProvider } from './context/ProductContext';
+
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 
@@ -22,9 +25,13 @@ export default function RootLayout({
 			lang='en'
 			data-theme='winter'>
 			<body className={inter.className}>
-				<Header />
-				<main>{children}</main>
-				<Footer />
+				<CartProvider>
+					<ProductProvider>
+						<Header />
+						<main>{children}</main>
+						<Footer />
+					</ProductProvider>
+				</CartProvider>
 			</body>
 		</html>
 	);
