@@ -21,8 +21,6 @@ const cartPage = () => {
 		return acc;
 	}, 0);
 
-	console.log(cartItemsArray);
-
 	return cartItemsArray.length ? (
 		<div>
 			<h3>CART</h3>
@@ -31,7 +29,6 @@ const cartPage = () => {
 				<ul>
 					{cartItemsArray.map(({ id, quantity }) => {
 						const item = products.find((product: ProductType) => product.id === id);
-						console.log(item);
 						if (item) {
 							return (
 								<li key={id}>
@@ -47,7 +44,6 @@ const cartPage = () => {
 								</li>
 							);
 						}
-
 						return null;
 					})}
 				</ul>
@@ -56,7 +52,9 @@ const cartPage = () => {
 		</div>
 	) : (
 		<div>
-			<h2>Your cart is empty...</h2>
+			<h2 className='text-center mt-6 font-semibold text-xl'>
+				Your cart is empty...
+			</h2>
 		</div>
 	);
 };
