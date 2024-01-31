@@ -28,7 +28,7 @@ const ProductCard = ({
 							onClick={() => {
 								addToCart(product);
 							}}>
-							Buy Now
+							Add to cart
 						</button>
 					</div>
 				</div>
