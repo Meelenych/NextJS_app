@@ -10,15 +10,40 @@ const ProductsPage: React.FC = () => {
 	const { products } = useProduct();
 
 	const [searchValue, setSearchValue] = useState('');
+	const [filterValue, setFilterValue] = useState('');
 	const [searchResult, setSearchResult] = useState([]);
 
-	const search = () => {
-		setSearchValue(searchValue);
+	const clearSearchAndFilter = () => {
+		setSearchValue('');
+		setFilterValue('');
+	};
+
+	const searchProducts = () => {
 		setSearchResult(
 			products.filter((product: ProductType) =>
 				product.name.includes(searchValue.toLowerCase().trim()),
 			),
 		);
+	};
+
+	const filterProducts = () => {
+		setSearchResult(
+			products.filter(
+				(product: ProductType) =>
+					product.name.toLowerCase().includes(searchValue.toLowerCase().trim()) &&
+					(filterValue === '' ||
+						product.type.toLowerCase() === filterValue.toLowerCase()),
+			),
+		);
+	};
+
+	const handleSearchAndFilter = () => {
+		clearSearchAndFilter();
+		if (filterValue !== '') {
+			filterProducts();
+		} else {
+			searchProducts();
+		}
 	};
 
 	// useEffect(() => {
@@ -44,27 +69,26 @@ const ProductsPage: React.FC = () => {
 						/>
 					</div>
 				</div>
-				<select className='select select-bordered join-item'>
-					<option
-						disabled
-						defaultValue={'Filter'}>
-						Filter
-					</option>
-					<option>Vegetables</option>
-					<option>Fruits</option>
+				<select
+					className='select select-bordered join-item'
+					value={filterValue}
+					onChange={e => setFilterValue(e.target.value)}>
+					<option value=''>Filter</option>
+					<option>Vegetable</option>
+					<option>Fruit</option>
 					<option>Dairy</option>
 				</select>
 				<div className='indicator'>
 					<button
 						className='btn join-item'
-						onClick={() => search()}>
+						onClick={() => handleSearchAndFilter()}>
 						Search
 					</button>
 				</div>
 			</div>
 
 			<ul className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-3 sm:p-6 lg:p-10'>
-				{searchResult.length
+				{searchResult.length > 0
 					? searchResult?.map((product: ProductType) => (
 							<ProductCard
 								key={product.id}
