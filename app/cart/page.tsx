@@ -24,30 +24,75 @@ const cartPage = () => {
 	return cartItemsArray.length ? (
 		<div>
 			<h3>CART</h3>
-			<div>
-				<h2>Cart Items:</h2>
-				<ul>
-					{cartItemsArray.map(({ id, quantity }) => {
-						const item = products.find((product: ProductType) => product.id === id);
-						if (item) {
-							return (
-								<li key={id}>
-									<div>
-										<img
-											width={'55rem'}
-											src={item.image}
-											alt={item.name}
-										/>
-									</div>
-									{item.name}: {quantity} pcs | Price: {item.price} | Sum:{' '}
-									{item.price * quantity}
-								</li>
-							);
-						}
-						return null;
-					})}
-				</ul>
-				<p>Total: {totalCost}</p>
+
+			<h2>Cart Items:</h2>
+
+			<div className='overflow-x-auto'>
+				<table className='table'>
+					<thead>
+						<tr className='font-semibold text-lg'>
+							<th>
+								<label>
+									<input
+										type='checkbox'
+										className='checkbox'
+									/>
+								</label>
+							</th>
+							<th>Product</th>
+							<th>Quantity</th>
+							<th>Price</th>
+							<th>Sum</th>
+						</tr>
+					</thead>
+					<tbody>
+						{cartItemsArray.map(({ id, quantity }) => {
+							const item = products.find((product: ProductType) => product.id === id);
+							if (item) {
+								return (
+									<tr key={id}>
+										<th>
+											<label>
+												<input
+													type='checkbox'
+													className='checkbox'
+												/>
+											</label>
+										</th>
+										<td>
+											<div className='flex items-center gap-3'>
+												<div className='avatar'>
+													<div className='mask mask-squircle w-12 h-12'>
+														<img
+															src={item.image}
+															alt={item.name}
+														/>
+													</div>
+												</div>
+												<div>
+													<div className='font-bold'>{item.name}</div>
+												</div>
+											</div>
+										</td>
+										<td>{quantity} pcs</td>
+										<td>{item.price}</td>
+										<th>{item.price * quantity}</th>
+									</tr>
+								);
+							}
+							return null;
+						})}
+					</tbody>
+					<tfoot>
+						<tr className='font-semibold text-lg'>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th>Total:</th>
+							<th>{totalCost}</th>
+						</tr>
+					</tfoot>
+				</table>
 			</div>
 		</div>
 	) : (
