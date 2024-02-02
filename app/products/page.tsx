@@ -46,6 +46,11 @@ const ProductsPage: React.FC = () => {
 		}
 	};
 
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === 'Enter') {
+			handleSearchAndFilter();
+		}
+	};
 	// useEffect(() => {
 	// 	fetch('http://localhost:5000/api/e-store/products')
 	// 		.then(res => res.json())
@@ -66,6 +71,7 @@ const ProductsPage: React.FC = () => {
 							onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
 								setSearchValue(e.target.value)
 							}
+							onKeyDown={handleKeyDown}
 						/>
 					</div>
 				</div>
@@ -80,6 +86,7 @@ const ProductsPage: React.FC = () => {
 				</select>
 				<div className='indicator'>
 					<button
+						id='search'
 						className='btn join-item'
 						onClick={() => handleSearchAndFilter()}>
 						Search
