@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import ProductCard from './ProductCard/ProductCard';
 import { Product as ProductType } from '../interfaces/interfaces';
@@ -11,34 +12,26 @@ const ProductsPage: React.FC = () => {
 
 	const [searchValue, setSearchValue] = useState('');
 	const [filterValue, setFilterValue] = useState('');
-	const [searchResult, setSearchResult] = useState([]);
-
-	const clearSearchAndFilter = () => {
-		setSearchValue('');
-		setFilterValue('');
-	};
+	const [searchResult, setSearchResult] = useState<ProductType[]>(products);
 
 	const searchProducts = () => {
-		setSearchResult(
-			products.filter((product: ProductType) =>
-				product.name.includes(searchValue.toLowerCase().trim()),
-			),
+		const filteredProducts = products.filter((product: ProductType) =>
+			product.name.toLowerCase().includes(searchValue.toLowerCase().trim()),
 		);
+		setSearchResult(filteredProducts);
 	};
 
 	const filterProducts = () => {
-		setSearchResult(
-			products.filter(
-				(product: ProductType) =>
-					product.name.toLowerCase().includes(searchValue.toLowerCase().trim()) &&
-					(filterValue === '' ||
-						product.type.toLowerCase() === filterValue.toLowerCase()),
-			),
+		const filteredProducts = products.filter(
+			(product: ProductType) =>
+				product.name.toLowerCase().includes(searchValue.toLowerCase().trim()) &&
+				(filterValue === '' ||
+					product.type.toLowerCase() === filterValue.toLowerCase()),
 		);
+		setSearchResult(filteredProducts);
 	};
 
 	const handleSearchAndFilter = () => {
-		clearSearchAndFilter();
 		if (filterValue !== '') {
 			filterProducts();
 		} else {
@@ -51,6 +44,17 @@ const ProductsPage: React.FC = () => {
 			handleSearchAndFilter();
 		}
 	};
+
+	const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const selectedValue = e.target.value;
+		console.log('Selected filter value:', selectedValue);
+		setFilterValue(selectedValue);
+	};
+
+	useEffect(() => {
+		handleSearchAndFilter();
+	}, [searchValue, filterValue]);
+
 	// useEffect(() => {
 	// 	fetch('http://localhost:5000/api/e-store/products')
 	// 		.then(res => res.json())
@@ -78,20 +82,12 @@ const ProductsPage: React.FC = () => {
 				<select
 					className='select select-bordered join-item'
 					value={filterValue}
-					onChange={e => setFilterValue(e.target.value)}>
-					<option value=''>Filter</option>
+					onChange={handleFilterChange}>
+					<option value=''>All</option>
 					<option>Vegetable</option>
 					<option>Fruit</option>
 					<option>Dairy</option>
 				</select>
-				<div className='indicator'>
-					<button
-						id='search'
-						className='btn join-item'
-						onClick={() => handleSearchAndFilter()}>
-						Search
-					</button>
-				</div>
 			</div>
 
 			<ul className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-3 sm:p-6 lg:p-10'>
