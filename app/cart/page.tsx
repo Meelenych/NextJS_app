@@ -75,7 +75,9 @@ const cartPage = () => {
 												</div>
 											</div>
 										</td>
-										<td>{quantity} pcs</td>
+										<td>
+											{quantity} {quantity === 1 ? 'pc' : 'pcs'}
+										</td>
 										<td>{formatter(item.price)}</td>
 										<th>{formatter(item.price * quantity)}</th>
 									</tr>
