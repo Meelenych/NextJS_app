@@ -5,6 +5,8 @@ import { useCart } from '../context/CartContext';
 import ProductCard from './ProductCard/ProductCard';
 import { Product as ProductType } from '../interfaces/interfaces';
 import { useProduct } from '../context/ProductContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductsPage: React.FC = () => {
 	const { addToCart } = useCart();
@@ -34,6 +36,7 @@ const ProductsPage: React.FC = () => {
 	const handleSearchAndFilter = () => {
 		if (filterValue !== '') {
 			filterProducts();
+			toast.success('Products filtered!');
 		} else {
 			searchProducts();
 		}
@@ -64,6 +67,7 @@ const ProductsPage: React.FC = () => {
 
 	return (
 		<>
+			<ToastContainer />
 			<div className='join flex justify-center mt-6'>
 				<div>
 					<div>
@@ -89,7 +93,6 @@ const ProductsPage: React.FC = () => {
 					<option>Dairy</option>
 				</select>
 			</div>
-
 			<ul className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-3 sm:p-6 lg:p-10'>
 				{searchResult.length > 0
 					? searchResult?.map((product: ProductType) => (

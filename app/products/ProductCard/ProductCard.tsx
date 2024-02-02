@@ -1,5 +1,7 @@
 import React from 'react';
 import { Product as ProductType } from '../../interfaces/interfaces';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductCard = ({
 	product,
@@ -10,6 +12,7 @@ const ProductCard = ({
 }) => {
 	return (
 		<li>
+			{/* <ToastContainer /> */}
 			<div className='card card-compact bg-base-100 shadow-xl'>
 				<figure>
 					<img
@@ -27,6 +30,11 @@ const ProductCard = ({
 							className='btn btn-primary'
 							onClick={() => {
 								addToCart(product);
+								toast.success(
+									`${
+										product.name.charAt(0).toUpperCase() + product.name.slice(1)
+									} added to cart!`,
+								);
 							}}>
 							Add to cart
 						</button>
