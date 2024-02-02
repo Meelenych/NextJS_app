@@ -67,7 +67,7 @@ const ProductsPage: React.FC = () => {
 
 	return (
 		<>
-			<ToastContainer />
+			<ToastContainer position='top-left' />
 			<div className='join flex justify-center mt-6'>
 				<div>
 					<div>

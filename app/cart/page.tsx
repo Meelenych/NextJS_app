@@ -3,6 +3,7 @@ import React from 'react';
 import { useCart } from '../context/CartContext';
 import { useProduct } from '../context/ProductContext';
 import { Product as ProductType } from '../interfaces/interfaces';
+import { formatter } from '../assets/helpers/formatter';
 
 const cartPage = () => {
 	const { cartItems }: { cartItems: { [key: string]: number } } = useCart();
@@ -75,8 +76,8 @@ const cartPage = () => {
 											</div>
 										</td>
 										<td>{quantity} pcs</td>
-										<td>{item.price}</td>
-										<th>{item.price * quantity}</th>
+										<td>{formatter(item.price)}</td>
+										<th>{formatter(item.price * quantity)}</th>
 									</tr>
 								);
 							}
@@ -89,7 +90,7 @@ const cartPage = () => {
 							<th></th>
 							<th></th>
 							<th>Total:</th>
-							<th>{totalCost}</th>
+							<th>{formatter(totalCost)}</th>
 						</tr>
 					</tfoot>
 				</table>

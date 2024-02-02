@@ -2,6 +2,7 @@ import React from 'react';
 import { Product as ProductType } from '../../interfaces/interfaces';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { formatter } from '../../assets/helpers/formatter';
 
 const ProductCard = ({
 	product,
@@ -25,6 +26,7 @@ const ProductCard = ({
 						{product.name.charAt(0).toUpperCase() + product.name.slice(1)}
 					</h2>
 					<p>{product.description}</p>
+					<p>Price: {formatter(product.price)}</p>
 					<div className='card-actions justify-end'>
 						<button
 							className='btn btn-primary'
