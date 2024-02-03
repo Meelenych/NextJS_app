@@ -36,7 +36,7 @@ const ProductsPage: React.FC = () => {
 	const handleSearchAndFilter = () => {
 		if (filterValue !== '') {
 			filterProducts();
-			toast.success('Products filtered!');
+			toast.success(`Showing ${filterValue.toLowerCase()} products`);
 		} else {
 			searchProducts();
 		}
