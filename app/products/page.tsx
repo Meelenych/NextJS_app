@@ -68,13 +68,13 @@ const ProductsPage: React.FC = () => {
 	return (
 		<>
 			<ToastContainer position='top-left' />
-			<div className='join flex justify-center mt-6'>
+			<div className='join flex justify-center mt-3 sm:nmt-6'>
 				<div>
 					<div>
 						<input
 							type='text'
 							value={searchValue}
-							className='input input-bordered join-item'
+							className='input input-bordered join-item w-52'
 							placeholder='Search'
 							onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
 								setSearchValue(e.target.value)

@@ -24,9 +24,22 @@ const cartPage = () => {
 
 	return cartItemsArray.length ? (
 		<div>
-			<h3>CART</h3>
-
-			<h2>Cart Items:</h2>
+			<div className='flex flex-row items-center justify-center mt-6'>
+				<svg
+					width='36px'
+					height='36px'
+					viewBox='0 -2 19.001 19.001'
+					xmlns='http://www.w3.org/2000/svg'>
+					<path
+						id='Path_14'
+						data-name='Path 14'
+						d='M473.974,826v-1h12v1Zm0,2h11v1h-11Zm9.987,4.02h-9.992a2.664,2.664,0,0,1-2.71-2.66l-.8-7.36h-3.484v-1h4.406l.869,8.36a1.874,1.874,0,0,0,1.72,1.633h9.992v1.027Zm-10.487.98a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,473.474,833Zm-.531,1.969h1V834h-1ZM481.474,833a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,481.474,833Zm-.531,1.969h1V834h-1Z'
+						transform='translate(-466.973 -821)'
+						fill='#444'
+					/>
+				</svg>
+				<h3 className='ml-4'>Check your cart</h3>
+			</div>
 
 			<div className='overflow-x-auto'>
 				<table className='table'>
@@ -99,10 +112,22 @@ const cartPage = () => {
 			</div>
 		</div>
 	) : (
-		<div>
-			<h2 className='text-center mt-6 font-semibold text-xl'>
-				Your cart is empty...
-			</h2>
+		<div className='flex flex-row items-center justify-center'>
+			<svg
+				className='mt-6'
+				width='36px'
+				height='36px'
+				viewBox='0 -2 19.001 19.001'
+				xmlns='http://www.w3.org/2000/svg'>
+				<path
+					id='Path_14'
+					data-name='Path 14'
+					d='M473.974,826v-1h12v1Zm0,2h11v1h-11Zm9.987,4.02h-9.992a2.664,2.664,0,0,1-2.71-2.66l-.8-7.36h-3.484v-1h4.406l.869,8.36a1.874,1.874,0,0,0,1.72,1.633h9.992v1.027Zm-10.487.98a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,473.474,833Zm-.531,1.969h1V834h-1ZM481.474,833a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,481.474,833Zm-.531,1.969h1V834h-1Z'
+					transform='translate(-466.973 -821)'
+					fill='#444'
+				/>
+			</svg>
+			<h2 className='mt-6 ml-4 font-semibold text-xl'>Your cart is empty...</h2>
 		</div>
 	);
 };

@@ -2,7 +2,7 @@ import Link from 'next/link.js';
 
 export default function Hero() {
 	return (
-		<div className='mx-auto max-w-2xl py-32 sm:py-48 lg:py-56'>
+		<div className='mx-auto max-w-2xl py-20 sm:py-48 lg:py-56'>
 			<section className='text-center'>
 				<h1 className=' text-5xl font-bold tracking-tight text-gray-900   '>
 					Welcome to Our E-Store
