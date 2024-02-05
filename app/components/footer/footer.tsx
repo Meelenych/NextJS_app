@@ -4,7 +4,7 @@ import Link from 'next/link';
 const footer = () => {
 	return (
 		<>
-			<footer className='footer sticky bottom-0 items-center p-4 bg-neutral text-neutral-content'>
+			<footer className='footer sticky bottom-0 items-center p-4 bg-sky-600 text-neutral-content'>
 				<aside className='items-center grid-flow-col'>
 					<svg
 						width='36'
