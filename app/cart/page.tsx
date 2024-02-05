@@ -4,6 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useProduct } from '../context/ProductContext';
 import { Product as ProductType } from '../interfaces/interfaces';
 import { formatter } from '../assets/helpers/formatter';
+import { capitalize } from '../assets/helpers/capitalize';
 
 const cartPage = () => {
 	const { cartItems }: { cartItems: { [key: string]: number } } = useCart();
@@ -23,7 +24,7 @@ const cartPage = () => {
 	}, 0);
 
 	return cartItemsArray.length ? (
-		<div>
+		<div className='p-0 sm:px-10'>
 			<div className='flex flex-row items-center justify-center mt-6'>
 				<svg
 					width='36px'
@@ -44,12 +45,12 @@ const cartPage = () => {
 			<div className='overflow-x-auto'>
 				<table className='table'>
 					<thead>
-						<tr className='font-semibold text-lg'>
+						<tr className='font-semibold text-xs sm:text-lg'>
 							<th>
 								<label>
 									<input
 										type='checkbox'
-										className='checkbox'
+										className='checkbox checkbox-xs sm:checkbox-md'
 									/>
 								</label>
 							</th>
@@ -69,13 +70,13 @@ const cartPage = () => {
 											<label>
 												<input
 													type='checkbox'
-													className='checkbox'
+													className='checkbox checkbox-xs sm:checkbox-md'
 												/>
 											</label>
 										</th>
 										<td>
 											<div className='flex items-center gap-3'>
-												<div className='avatar'>
+												<div className='hidden sm:avatar'>
 													<div className='mask mask-squircle w-12 h-12'>
 														<img
 															src={item.image}
@@ -84,15 +85,19 @@ const cartPage = () => {
 													</div>
 												</div>
 												<div>
-													<div className='font-bold'>{item.name}</div>
+													<div className='font-bold text-xs sm:text-lg'>
+														{capitalize(item.name)}
+													</div>
 												</div>
 											</div>
 										</td>
-										<td>
+										<td className='text-xs sm:text-base'>
 											{quantity} {quantity === 1 ? 'pc' : 'pcs'}
 										</td>
-										<td>{formatter(item.price)}</td>
-										<th>{formatter(item.price * quantity)}</th>
+										<td className='text-xs sm:text-base'>{formatter(item.price)}</td>
+										<th className='text-xs sm:text-base'>
+											{formatter(item.price * quantity)}
+										</th>
 									</tr>
 								);
 							}
@@ -100,7 +105,7 @@ const cartPage = () => {
 						})}
 					</tbody>
 					<tfoot>
-						<tr className='font-semibold text-lg'>
+						<tr className='font-semibold text-xs sm:text-lg'>
 							<th></th>
 							<th></th>
 							<th></th>
