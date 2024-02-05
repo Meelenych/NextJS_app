@@ -3,6 +3,7 @@ import { Product as ProductType } from '../../interfaces/interfaces';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { formatter } from '../../assets/helpers/formatter';
+import { capitalize } from '@/app/assets/helpers/capitalize';
 
 const ProductCard = ({
 	product,
@@ -22,9 +23,7 @@ const ProductCard = ({
 					/>
 				</figure>
 				<div className='card-body'>
-					<h2 className='card-title'>
-						{product.name.charAt(0).toUpperCase() + product.name.slice(1)}
-					</h2>
+					<h2 className='card-title'>{capitalize(product.name)}</h2>
 					<p>{product.description}</p>
 					<p>Price: {formatter(product.price)}</p>
 					<div className='card-actions justify-end'>
@@ -32,11 +31,7 @@ const ProductCard = ({
 							className='btn btn-primary'
 							onClick={() => {
 								addToCart(product);
-								toast.success(
-									`${
-										product.name.charAt(0).toUpperCase() + product.name.slice(1)
-									} added to cart!`,
-								);
+								toast.success(`${capitalize(product.name)} added to cart!`);
 							}}>
 							Add to cart
 						</button>
