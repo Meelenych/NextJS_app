@@ -13,8 +13,10 @@ const ProductCard = ({
 	addToCart: (item: ProductType) => void;
 }) => {
 	return (
-		<li>
-			{/* <ToastContainer /> */}
+		<li className='relative overflow-hidden'>
+			<div className='badge-info opacity-75 absolute top-2 right-2 z-10 rounded-xl p-1'>
+				<p>Rating {'4/5'}</p>
+			</div>
 			<div className='card card-compact bg-base-100 shadow-xl'>
 				<figure>
 					<img
