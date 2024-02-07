@@ -14,7 +14,6 @@ const ProductCard = ({
 	addToCart: (item: ProductType) => void;
 }) => {
 	const [rating, setRating] = useState<number>(product.rating);
-	// const [starColor, setStarColor] = useState('transparent');
 
 	const handleRating = (selectedRating: number) => {
 		setRating(selectedRating);
@@ -36,8 +35,8 @@ const ProductCard = ({
 	};
 
 	return (
-		<li className='relative'>
-			<div className='badge-info opacity-75 absolute top-2 right-2 z-10 rounded-xl p-1'>
+		<li className='relative hover:drop-shadow-2xl hover:-translate-y-2'>
+			<div className='badge-info opacity-50 absolute top-2 right-2 z-10 rounded-xl p-1 cursor-pointer'>
 				<div className='flex'>
 					{[1, 2, 3, 4, 5].map(star => (
 						<Star
