@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { formatter } from '../../assets/helpers/formatter';
 import { capitalize } from '@/app/assets/helpers/capitalize';
 import Star from '../../assets/svg/Star';
+import Link from 'next/link';
 
 const ProductCard = ({
 	product,
@@ -35,7 +36,7 @@ const ProductCard = ({
 	};
 
 	return (
-		<li className='relative hover:drop-shadow-2xl hover:-translate-y-2'>
+		<li className='relative hover:drop-shadow-2xl hover:-translate-y-2 ease-linear duration-300'>
 			<div className='badge-info opacity-50 absolute top-2 right-2 z-10 rounded-xl p-1 cursor-pointer'>
 				<div className='flex'>
 					{[1, 2, 3, 4, 5].map(star => (
@@ -58,7 +59,12 @@ const ProductCard = ({
 					<h2 className='card-title'>{capitalize(product.name)}</h2>
 					<p>{product.description}</p>
 					<p>Price: {formatter(product.price)}</p>
-					<div className='card-actions justify-end'>
+					<div className='card-actions justify-between'>
+						<Link
+							href='#'
+							className='btn btn-accent'>
+							Show info
+						</Link>
 						<button
 							className='btn btn-primary'
 							onClick={() => {
